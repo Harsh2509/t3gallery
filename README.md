@@ -2,8 +2,8 @@
 
 ## Todo App
 
-- [ ] Make it deploy (vercel)
-- [ ] Scaffhold basic UI with mock data
+- [x] Make it deploy (vercel)
+- [x] Scaffhold basic UI with mock data
 - [ ] Actually set up a database (postgres)
 - [ ] Attach database to ui
 - [ ] Add authentication
