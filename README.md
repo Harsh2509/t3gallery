@@ -7,7 +7,7 @@
 - [x] Tidy up build process
 - [x] Actually set up a database (neon postgres)
 - [x] Attach database to ui
-- [ ] Add authentication
+- [x] Add authentication
 - [ ] Add image upload
 - [ ] Error Management (w/ Sentry)
 - [ ] Routing/image page (parallel route)
