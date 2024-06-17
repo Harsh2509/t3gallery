@@ -1,28 +1,42 @@
+import { SignedIn, SignedOut } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { db } from "~/server/db";
+import { images } from "~/server/db/schema";
+import { sql } from "drizzle-orm";
 
 export const dynamic = "force-dynamic";
 
-const mockUrls = [
-  "https://utfs.io/f/28b6103d-a7e2-4c7c-a7aa-ae8d16c7e154-pr0pib.png",
-  "https://utfs.io/f/bcef28d9-e10d-424e-aacc-4009d98d029a-8tcm71.png",
-  "https://utfs.io/f/1ce4811f-248b-4dc4-beec-e574610c77e0-2wt599.png",
-];
-
-const mockImages = mockUrls.map((url, index) => ({ id: index, url }));
+async function Images() {
+  const { userId } = auth();
+  console.log(`User Id: ${userId}`);
+  const imgs = await db
+    .select()
+    .from(images)
+    .where(sql`${images.userId} = ${userId}`);
+  console.log(JSON.stringify(imgs));
+  return (
+    <div className="flex flex-wrap gap-4">
+      {imgs.map((image, index) => (
+        <div className="flex w-48 flex-col" key={image.id}>
+          <img src={image.url} alt="" />
+          <p>{image.name}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 export default async function HomePage() {
-  const images = await db.query.images.findMany();
-
   return (
     <main className="">
-      <div className="flex flex-wrap gap-4">
-        {[...images, ...images, ...images].map((image, index) => (
-          <div className="w-48 flex flex-col" key={image.id + '-' + index}>
-            <img src={image.url} alt="" />
-            <p>{image.name}</p>
-          </div>
-        ))}
-      </div>
+      <SignedOut>
+        <div className="h-full w-full text-center align-middle text-xl">
+          Please SignIn to access this.
+        </div>
+      </SignedOut>
+      <SignedIn>
+        <Images />
+      </SignedIn>
     </main>
   );
 }
