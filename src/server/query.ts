@@ -14,3 +14,23 @@ export const getImages = async () => {
 
   return imgs;
 };
+
+export const getImage = async (id: string) => {
+  const { userId } = auth();
+  if (!userId) {
+    throw new Error("Not authenticated");
+  }
+
+  const img = await db
+    .select()
+    .from(images)
+    .where(sql`${images.id} = ${id}`);
+
+  if (!img || img.length === 0 || img[0] == undefined) {
+    throw new Error("Image not found");
+  } else if (img[0].userId !== userId) {
+    throw new Error("Unauthorized");
+  }
+
+  return img[0];
+};

@@ -16,8 +16,10 @@ export const metadata = {
 
 export default function RootLayout({
   children,
+  modal,
 }: {
   children: React.ReactNode;
+  modal: React.ReactNode;
 }) {
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
@@ -34,6 +36,7 @@ export default function RootLayout({
           />
           <TopNav />
           {children}
+          {modal}
         </ClerkProvider>
       </body>
     </html>
