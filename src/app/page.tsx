@@ -1,19 +1,14 @@
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
-import { db } from "~/server/db";
-import { images } from "~/server/db/schema";
-import { sql } from "drizzle-orm";
+import { getImages } from "~/server/query";
 
 export const dynamic = "force-dynamic";
 
 async function Images() {
   const { userId } = auth();
-  console.log(`User Id: ${userId}`);
-  const imgs = await db
-    .select()
-    .from(images)
-    .where(sql`${images.userId} = ${userId}`);
-  console.log(JSON.stringify(imgs));
+
+  const imgs = await getImages();
+
   return (
     <div className="flex flex-wrap gap-4">
       {imgs.map((image, index) => (

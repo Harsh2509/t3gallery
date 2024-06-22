@@ -8,8 +8,8 @@
 - [x] Actually set up a database (neon postgres)
 - [x] Attach database to ui
 - [x] Add authentication
-- [ ] Add image upload
-- [ ] "taint" (server only)
+- [x] Add image upload
+- [x] "taint" (server only)
 - [ ] Use Next/Image component
 - [ ] Error Management (w/ Sentry)
 - [ ] Routing/image page (parallel route)
