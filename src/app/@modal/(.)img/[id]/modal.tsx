@@ -22,7 +22,7 @@ export function Modal({ children }: { children: React.ReactNode }) {
     <div className="modal-backdrop h-full w-full">
       <dialog
         ref={dialogRef}
-        className="modal m-0 h-full w-full bg-zinc-900/50 text-white"
+        className="modal m-0 h-full w-full bg-zinc-900/70 text-white"
         onClose={onDismiss}
       >
         {children}
