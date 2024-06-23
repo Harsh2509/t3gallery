@@ -1,6 +1,4 @@
-# Create T3 App
-
-## Todo App
+## This is just for the creator (Harsh):
 
 - [x] Make it deploy (vercel)
 - [x] Scaffhold basic UI with mock data
@@ -13,6 +11,8 @@
 - [x] Use Next/Image component
 - [x] Error Management (w/ Sentry)
 - [x] Routing/image page (parallel route)
+- [x] Update upload button to be less cringe
+- [x] ShadUIify (specifically toast part)
 - [ ] Delete button (w/ Server Actions)
 - [ ] Analytics (posthog)
 - [ ] Ratelimiting (upstash)

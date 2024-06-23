@@ -7,6 +7,7 @@ import { ourFileRouter } from "./api/uploadthing/core";
 import { TopNav } from "./_components/TopNav";
 import { GeistSans } from "geist/font/sans";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from "../components/ui/sonner";
 
 export const metadata = {
   title: "T3 Gallery",
@@ -40,6 +41,7 @@ export default function RootLayout({
           </div>
           {modal}
           <div id="modal-root" />
+          <Toaster />
         </ClerkProvider>
       </body>
     </html>
