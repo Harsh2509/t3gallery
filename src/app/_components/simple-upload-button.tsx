@@ -6,6 +6,7 @@ import { generateClientDropzoneAccept } from "uploadthing/client";
 import { toast } from "sonner";
 
 import { useUploadThing } from "~/utils/uploadthing";
+import { usePostHog } from "posthog-js/react";
 
 function ImportFileIcon() {
   return (
@@ -27,6 +28,7 @@ function ImportFileIcon() {
 }
 
 export function MultiUploader() {
+  const posthog = usePostHog();
   const router = useRouter();
   const [files, setFiles] = useState<File[]>([]);
   const onDrop = useCallback((acceptedFiles: File[]) => {
@@ -46,6 +48,7 @@ export function MultiUploader() {
       toast.error("Upload failed!");
     },
     onUploadBegin: () => {
+      posthog.capture("upload_started");
       toast("Uploading...", {
         duration: 100000,
         id: "uploading",
